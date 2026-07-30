@@ -129,6 +129,8 @@ export default defineConfig(({ command }) => ({
     host: "0.0.0.0",
     port: 8080,
     strictPort: true,
+    // Public share tunnels (Cloudflare / localhost.run) hit Vite host checks
+    allowedHosts: true,
   },
   resolve: { tsconfigPaths: true },
   plugins: [
