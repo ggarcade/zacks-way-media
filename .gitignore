@@ -1,0 +1,12 @@
+node_modules
+.DS_Store
+dist
+.output
+.vinxi
+.turbo
+.env
+.env.*
+!.env.example
+*.log
+/tmp
+.vercel
