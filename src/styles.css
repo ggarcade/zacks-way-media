@@ -210,7 +210,7 @@
     color: rgb(242 242 240 / 0.12);
   }
 
-  /* Motorsports chrome — black letter rim for definition + red metal fill */
+  /* Motorsports chrome — light paint cost (no multi drop-shadow stacks) */
   .chrome-mark {
     font-family: var(--font-display);
     font-weight: 800;
@@ -218,34 +218,28 @@
     letter-spacing: -0.035em;
     text-transform: uppercase;
     text-wrap: balance;
+    color: #f5f5f3;
+    text-shadow:
+      0 0 18px rgb(225 6 0 / 0.35),
+      0 1px 0 #000,
+      0 -1px 0 #000,
+      1px 0 0 #000,
+      -1px 0 0 #000;
     background-image: linear-gradient(
       185deg,
       #ffffff 0%,
-      #ffe8e8 12%,
-      #ff9a9a 28%,
-      #e10600 46%,
-      #6a0400 58%,
-      #ff4d4d 72%,
-      #fff0f0 86%,
-      #b80500 100%
+      #ffe8e8 14%,
+      #ff9a9a 30%,
+      #e10600 48%,
+      #6a0400 60%,
+      #ff4d4d 78%,
+      #fff0f0 100%
     );
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    /* black letter rim via stacked drop-shadows (stroke + clip fills black) */
-    filter:
-      drop-shadow(0 2px 0 #000)
-      drop-shadow(0 -2px 0 #000)
-      drop-shadow(2px 0 0 #000)
-      drop-shadow(-2px 0 0 #000)
-      drop-shadow(1.5px 1.5px 0 #000)
-      drop-shadow(-1.5px 1.5px 0 #000)
-      drop-shadow(1.5px -1.5px 0 #000)
-      drop-shadow(-1.5px -1.5px 0 #000)
-      drop-shadow(2px 1px 0 #000)
-      drop-shadow(-2px 1px 0 #000)
-      drop-shadow(0 0 10px rgb(225 6 0 / 0.35))
-      drop-shadow(0 0 22px rgb(225 6 0 / 0.16));
+    /* one soft glow only — not 12 drop-shadows */
+    filter: drop-shadow(0 0 12px rgb(225 6 0 / 0.28));
   }
 
   .chrome-mark-sm {
@@ -266,16 +260,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    filter:
-      drop-shadow(0 1.35px 0 #000)
-      drop-shadow(0 -1.35px 0 #000)
-      drop-shadow(1.35px 0 0 #000)
-      drop-shadow(-1.35px 0 0 #000)
-      drop-shadow(1px 1px 0 #000)
-      drop-shadow(-1px 1px 0 #000)
-      drop-shadow(1px -1px 0 #000)
-      drop-shadow(-1px -1px 0 #000)
-      drop-shadow(0 0 8px rgb(225 6 0 / 0.25));
+    filter: drop-shadow(0 0 8px rgb(225 6 0 / 0.22));
   }
 
   .statement-stage {
@@ -308,15 +293,11 @@
     position: absolute;
     inset: -20% -10%;
     pointer-events: none;
-    background: conic-gradient(
-      from 210deg at 50% 50%,
-      transparent 0deg,
-      rgb(225 6 0 / 0.05) 40deg,
-      transparent 90deg,
-      rgb(225 6 0 / 0.035) 180deg,
-      transparent 240deg
+    background: radial-gradient(
+      circle at 70% 30%,
+      rgb(225 6 0 / 0.06),
+      transparent 55%
     );
-    animation: statement-spin 22s linear infinite;
   }
 
   .chrome-sheen {
@@ -324,18 +305,7 @@
   }
 
   .chrome-sheen::after {
-    content: "";
-    position: absolute;
-    inset: -10% -20%;
-    pointer-events: none;
-    background: linear-gradient(
-      105deg,
-      transparent 35%,
-      rgb(255 255 255 / 0.08) 48%,
-      transparent 58%
-    );
-    mix-blend-mode: overlay;
-    animation: chrome-sweep 6.5s var(--ease-out) infinite;
+    content: none;
   }
 
   .vert-label {
@@ -368,13 +338,17 @@
 
   .chrome-lean {
     perspective: 900px;
-    transform-style: preserve-3d;
   }
 
   .chrome-lean-body {
     transform-origin: 50% 85%;
-    transform: rotateX(11deg) rotateZ(-1.5deg);
-    animation: chrome-lean-idle 5.5s var(--ease-out) infinite alternate;
+    transform: rotateX(8deg) rotateZ(-1deg);
+  }
+
+  /* Skip offscreen paint work for long page sections */
+  .perf-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 640px;
   }
 }
 
@@ -389,44 +363,13 @@
   }
 }
 
-@keyframes chrome-sweep {
-  0%,
-  40% {
-    transform: translateX(-40%);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  70%,
-  100% {
-    transform: translateX(40%);
-    opacity: 0;
-  }
-}
-
-@keyframes statement-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
 
 @media (max-width: 639px) {
   .chrome-lean-body {
-    transform: rotateX(6deg) rotateZ(-0.6deg);
-    animation: none;
+    transform: none;
   }
   .chrome-mark {
-    filter:
-      drop-shadow(0 1.25px 0 #000)
-      drop-shadow(0 -1.25px 0 #000)
-      drop-shadow(1.25px 0 0 #000)
-      drop-shadow(-1.25px 0 0 #000)
-      drop-shadow(1px 1px 0 #000)
-      drop-shadow(-1px 1px 0 #000)
-      drop-shadow(1px -1px 0 #000)
-      drop-shadow(-1px -1px 0 #000)
-      drop-shadow(0 0 8px rgb(225 6 0 / 0.3));
+    filter: drop-shadow(0 0 8px rgb(225 6 0 / 0.25));
   }
   .statement-stage {
     padding-inline: 0;
@@ -437,28 +380,4 @@
   .enter-rise {
     animation: none;
   }
-  .chrome-sheen::after,
-  .statement-stage::after {
-    animation: none;
-  }
 }
-
-  .chrome-lean {
-    perspective: 900px;
-    transform-style: preserve-3d;
-  }
-
-  .chrome-lean-body {
-    transform-origin: 50% 80%;
-    transform: rotateX(11deg) rotateZ(-1.5deg) translateY(0);
-    animation: chrome-lean-idle 5.5s var(--ease-out) infinite alternate;
-  }
-
-  @keyframes chrome-lean-idle {
-    from {
-      transform: rotateX(9deg) rotateZ(-1.2deg) translateY(2px);
-    }
-    to {
-      transform: rotateX(13deg) rotateZ(-2deg) translateY(-2px);
-    }
-  }

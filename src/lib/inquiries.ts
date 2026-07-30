@@ -32,6 +32,9 @@ export const CONTACT_METHODS = [
   { value: "email", label: "Email" },
 ] as const;
 
+/** Simple gate for Zack's private inbox — change anytime. */
+export const LEADS_ACCESS_CODE = "signal2026";
+
 export const inquirySchema = z.object({
   fullName: z.string().trim().min(2, "Name is required").max(120),
   email: z.string().trim().email("Valid email required").max(200),
@@ -54,6 +57,25 @@ export const inquirySchema = z.object({
 });
 
 export type InquiryInput = z.infer<typeof inquirySchema>;
+
+export type InquiryRow = {
+  id: number;
+  full_name: string;
+  email: string;
+  phone: string | null;
+  company: string | null;
+  instagram: string | null;
+  other_socials: string | null;
+  website: string | null;
+  project_type: string;
+  budget_range: string | null;
+  timeline: string | null;
+  location: string | null;
+  preferred_contact: string | null;
+  goals: string;
+  referral: string | null;
+  created_at: string;
+};
 
 export const submitProjectInquiry = createServerFn({ method: "POST" })
   .validator(inquirySchema)
@@ -86,3 +108,30 @@ export const submitProjectInquiry = createServerFn({ method: "POST" })
     if (!id) throw new Error("Could not save inquiry");
     return { ok: true as const, id };
   });
+
+export const listProjectInquiries = createServerFn({ method: "POST" })
+  .validator(z.object({ code: z.string().min(1) }))
+  .handler(async ({ data }) => {
+    if (data.code.trim() !== LEADS_ACCESS_CODE) {
+      return { ok: false as const, error: "Wrong access code" };
+    }
+    const sql = await getSql();
+    const rows = await sql<InquiryRow>`
+      select
+        id, full_name, email, phone, company, instagram, other_socials, website,
+        project_type, budget_range, timeline, location, preferred_contact,
+        goals, referral, created_at::text as created_at
+      from project_inquiries
+      order by created_at desc
+      limit 100
+    `;
+    return { ok: true as const, rows };
+  });
+
+export function labelFor(
+  list: readonly { value: string; label: string }[],
+  value: string | null | undefined,
+) {
+  if (!value) return "—";
+  return list.find((x) => x.value === value)?.label ?? value;
+}

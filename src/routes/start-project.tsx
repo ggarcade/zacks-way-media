@@ -56,7 +56,7 @@ const NEED_LIST = [
 function StartProjectPage() {
   return (
     <div className="theme-dark min-h-dvh text-fg">
-      <header className="sticky top-0 z-40 border-b border-border/70 bg-bg/85 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-border/70 bg-bg/92 backdrop-blur-sm">
         <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
           <Link
             to="/"
