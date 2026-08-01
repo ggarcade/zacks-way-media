@@ -435,6 +435,56 @@ html[data-accent="blue"] {
     position: relative;
   }
 
+  /* —— 80s neon tube ignition (Signal over noise) —— */
+  .neon-sign {
+    position: relative;
+  }
+
+  .neon-bloom {
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+    left: 5%;
+    right: 5%;
+    top: 18%;
+    bottom: 8%;
+    border-radius: 40%;
+    background:
+      radial-gradient(
+        ellipse 70% 55% at 50% 45%,
+        rgb(var(--accent-rgb) / 0.45),
+        rgb(var(--accent-rgb) / 0.12) 45%,
+        transparent 70%
+      );
+    filter: blur(28px);
+    opacity: 0;
+    mix-blend-mode: screen;
+    animation:
+      neon-bloom-ignite 3.2s steps(1, end) both,
+      neon-bloom-hum 7.5s ease-in-out 3.2s infinite;
+  }
+
+  .neon-line {
+    animation:
+      neon-tube-ignite 3.2s both,
+      neon-tube-hum 7s ease-in-out 3.2s infinite;
+    will-change: opacity;
+  }
+
+  .neon-delay-0 {
+    animation-delay: 0s, 3.2s;
+  }
+  .neon-delay-1 {
+    animation-delay: 0.15s, 3.35s;
+  }
+  .neon-delay-2 {
+    animation-delay: 0.48s, 3.68s;
+  }
+  .neon-delay-3 {
+    animation-delay: 0.85s, 4.05s;
+  }
+
+
   .vert-label {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
@@ -503,6 +553,148 @@ html[data-accent="blue"] {
       0 0;
   }
 }
+
+/* 80s neon tube: gas sputters, catches, almost dies, then holds — + idle hum */
+@keyframes neon-tube-ignite {
+  0% {
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.55;
+  }
+  4% {
+    opacity: 0;
+  }
+  7% {
+    opacity: 0.92;
+  }
+  9% {
+    opacity: 0.04;
+  }
+  13% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 0.06;
+  }
+  20% {
+    opacity: 1;
+  }
+  23% {
+    opacity: 0.12;
+  }
+  29% {
+    opacity: 1;
+  }
+  33% {
+    opacity: 0.28;
+  }
+  40% {
+    opacity: 1;
+  }
+  46% {
+    opacity: 0.5;
+  }
+  55% {
+    opacity: 1;
+  }
+  62% {
+    opacity: 0.78;
+  }
+  72%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes neon-tube-hum {
+  0%,
+  86%,
+  100% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 0.78;
+  }
+  89.5% {
+    opacity: 1;
+  }
+  91% {
+    opacity: 0.86;
+  }
+  93%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes neon-bloom-ignite {
+  0% {
+    opacity: 0;
+  }
+  2% {
+    opacity: 0.8;
+  }
+  4% {
+    opacity: 0;
+  }
+  7% {
+    opacity: 0.9;
+  }
+  9% {
+    opacity: 0.03;
+  }
+  13% {
+    opacity: 0.85;
+  }
+  15% {
+    opacity: 0.05;
+  }
+  20% {
+    opacity: 0.82;
+  }
+  23% {
+    opacity: 0.08;
+  }
+  29% {
+    opacity: 0.75;
+  }
+  33% {
+    opacity: 0.15;
+  }
+  42% {
+    opacity: 0.62;
+  }
+  55% {
+    opacity: 0.42;
+  }
+  72%,
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes neon-bloom-hum {
+  0%,
+  86%,
+  100% {
+    opacity: 0.5;
+  }
+  88% {
+    opacity: 0.22;
+  }
+  90% {
+    opacity: 0.58;
+  }
+  92% {
+    opacity: 0.32;
+  }
+  94%,
+  100% {
+    opacity: 0.5;
+  }
+}
+
 
 @media (max-width: 639px) {
   .chrome-lean {
@@ -606,7 +798,12 @@ html[data-accent="blue"] {
   .statement-stage {
     padding-inline: 0.5rem;
   }
+
+  .neon-bloom {
+    filter: blur(20px);
+  }
 }
+
 
 @media (prefers-reduced-motion: reduce) {
   .enter-rise {
@@ -618,5 +815,14 @@ html[data-accent="blue"] {
     background-position:
       42% 0,
       0 0;
+  }
+  .neon-line,
+  .neon-bloom {
+    animation: none !important;
+    opacity: 1;
+    filter: none;
+  }
+  .neon-bloom {
+    opacity: 0.35;
   }
 }
