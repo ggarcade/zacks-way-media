@@ -119,82 +119,55 @@
     font-family: var(--font-mono);
   }
 
-  .shadow-soft {
-    box-shadow: var(--shadow-soft);
-  }
-
-  .shadow-lift {
-    box-shadow: var(--shadow-lift);
-  }
-
-  .shadow-red {
-    box-shadow: var(--shadow-red);
-  }
-
   .theme-dark {
-    background-color: var(--color-bg);
-    background-image:
-      radial-gradient(ellipse 70% 45% at 12% -5%, rgb(225 6 0 / 0.12), transparent 55%),
-      radial-gradient(ellipse 50% 35% at 92% 8%, rgb(225 6 0 / 0.06), transparent 48%),
-      linear-gradient(180deg, #080808 0%, #050505 45%, #070707 100%);
-  }
-
-  .red-rim {
-    border: 1px solid rgb(225 6 0 / 0.7);
-    box-shadow:
-      inset 0 0 0 1px rgb(225 6 0 / 0.1),
-      0 0 28px rgb(225 6 0 / 0.1);
-  }
-
-  .red-rim-strong {
-    border: 1px solid var(--color-rim);
-    box-shadow:
-      inset 0 0 0 1px rgb(225 6 0 / 0.18),
-      0 0 40px rgb(225 6 0 / 0.16);
-  }
-
-  .hatch {
-    background-color: #0b0b0b;
-    background-image:
-      repeating-linear-gradient(
-        -28deg,
-        transparent,
-        transparent 11px,
-        rgb(225 6 0 / 0.03) 11px,
-        rgb(225 6 0 / 0.03) 12px
-      ),
-      linear-gradient(165deg, #121212 0%, #0a0a0a 55%, #100808 100%);
-  }
-
-  .section-label {
-    font-family: var(--font-mono);
-    font-size: 0.6875rem;
-    font-weight: 500;
-    letter-spacing: var(--tracking-label);
-    text-transform: uppercase;
-    color: var(--color-primary);
+    color: var(--color-fg);
+    background: var(--color-bg);
   }
 
   .headline {
     font-family: var(--font-display);
-    font-weight: 700;
-    line-height: var(--leading-tight);
+    font-weight: 800;
     letter-spacing: var(--tracking-display);
-    color: var(--color-fg);
-    text-wrap: balance;
+    line-height: var(--leading-tight);
   }
 
   .lede {
-    font-family: var(--font-sans);
-    font-size: clamp(1rem, 0.95rem + 0.35vw, 1.125rem);
-    line-height: 1.65;
     color: var(--color-muted);
-    text-wrap: pretty;
+    line-height: var(--leading-normal);
   }
 
-  .type-stack {
-    display: flex;
-    flex-direction: column;
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  .red-rim {
+    border: 1px solid rgb(225 6 0 / 0.45);
+    box-shadow:
+      inset 0 0 0 1px rgb(225 6 0 / 0.08),
+      0 0 24px rgb(225 6 0 / 0.08);
+  }
+
+  .red-rim-strong {
+    border: 1px solid rgb(225 6 0 / 0.7);
+    box-shadow:
+      inset 0 0 0 1px rgb(225 6 0 / 0.12),
+      0 0 32px rgb(225 6 0 / 0.18);
+  }
+
+  .hatch {
+    background-color: var(--color-surface);
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 3px,
+      rgb(225 6 0 / 0.04) 3px,
+      rgb(225 6 0 / 0.04) 4px
+    );
   }
 
   .type-stack > * + * {
@@ -210,57 +183,140 @@
     color: rgb(242 242 240 / 0.12);
   }
 
-  /* Motorsports chrome — light paint cost (no multi drop-shadow stacks) */
-  .chrome-mark {
+  /*
+   * Motorsports chrome — metal sheen CLIPPED TO THE GLYPHS only.
+   * Dual-layer: .chrome-plate (solid readable base) + .chrome-mark (metal + sheen).
+   * Sheen is a sliding specular band inside background-clip:text — purposeful,
+   * not a full-bleed overlay.
+   */
+  .chrome-line {
+    position: relative;
+    display: block;
     font-family: var(--font-display);
     font-weight: 800;
     line-height: 0.9;
-    letter-spacing: -0.035em;
+    letter-spacing: -0.028em;
     text-transform: uppercase;
     text-wrap: balance;
-    color: #f5f5f3;
+  }
+
+  .chrome-plate {
+    display: block;
+    color: #f3f3f1;
     text-shadow:
-      0 0 18px rgb(225 6 0 / 0.35),
+      0 0 18px rgb(225 6 0 / 0.4),
       0 1px 0 #000,
       0 -1px 0 #000,
       1px 0 0 #000,
       -1px 0 0 #000;
-    background-image: linear-gradient(
-      185deg,
-      #ffffff 0%,
-      #ffe8e8 14%,
-      #ff9a9a 30%,
-      #e10600 48%,
-      #6a0400 60%,
-      #ff4d4d 78%,
-      #fff0f0 100%
-    );
+  }
+
+  .chrome-line > .chrome-mark {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .chrome-mark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.028em;
+    text-transform: uppercase;
+    text-wrap: balance;
+    color: #f5f5f3;
+    background-color: transparent;
+    background-image:
+      linear-gradient(
+        110deg,
+        transparent 0%,
+        transparent 36%,
+        rgb(255 255 255 / 0.05) 40%,
+        rgb(255 255 255 / 0.92) 47%,
+        rgb(255 235 235 / 0.7) 50%,
+        rgb(255 255 255 / 0.18) 54%,
+        transparent 62%,
+        transparent 100%
+      ),
+      linear-gradient(
+        172deg,
+        #ffffff 0%,
+        #f4f4f4 5%,
+        #c8c8c8 11%,
+        #ffe0e0 18%,
+        #ff7a7a 28%,
+        #e10600 40%,
+        #7a0600 50%,
+        #2a0200 56%,
+        #b01000 64%,
+        #ff4d4d 74%,
+        #ffe8e8 86%,
+        #ffffff 94%,
+        #d4d4d4 100%
+      );
+    background-size:
+      240% 100%,
+      100% 100%;
+    background-position:
+      130% 0,
+      0 0;
+    background-repeat: no-repeat;
     -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: transparent;
-    /* one soft glow only — not 12 drop-shadows */
-    filter: drop-shadow(0 0 12px rgb(225 6 0 / 0.28));
+    filter:
+      drop-shadow(0 1px 0 #000)
+      drop-shadow(0 -1px 0 #000)
+      drop-shadow(1px 0 0 #000)
+      drop-shadow(-1px 0 0 #000)
+      drop-shadow(0 0 16px rgb(225 6 0 / 0.45));
+    animation: chrome-metal-sheen 5.5s var(--ease-out) infinite;
   }
 
   .chrome-mark-sm {
     font-family: var(--font-display);
     font-weight: 800;
-    line-height: 0.94;
-    letter-spacing: -0.025em;
+    line-height: 0.95;
+    letter-spacing: -0.015em;
     text-transform: uppercase;
-    background-image: linear-gradient(
-      185deg,
-      #ffffff 0%,
-      #ffc9c9 22%,
-      #e10600 48%,
-      #4a0200 62%,
-      #ff6b6b 82%,
-      #ffffff 100%
-    );
+    color: #f5f5f3;
+    background-color: transparent;
+    background-image:
+      linear-gradient(
+        110deg,
+        transparent 0%,
+        transparent 38%,
+        rgb(255 255 255 / 0.75) 48%,
+        transparent 58%,
+        transparent 100%
+      ),
+      linear-gradient(
+        172deg,
+        #ffffff 0%,
+        #ffd0d0 16%,
+        #e10600 40%,
+        #4a0300 54%,
+        #ff6b6b 76%,
+        #ffffff 100%
+      );
+    background-size:
+      220% 100%,
+      100% 100%;
+    background-position:
+      130% 0,
+      0 0;
     -webkit-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
     color: transparent;
-    filter: drop-shadow(0 0 8px rgb(225 6 0 / 0.22));
+    filter:
+      drop-shadow(0 1px 0 #000)
+      drop-shadow(1px 0 0 #000)
+      drop-shadow(-1px 0 0 #000)
+      drop-shadow(0 0 10px rgb(225 6 0 / 0.35));
+    animation: chrome-metal-sheen 6.5s var(--ease-out) infinite;
   }
 
   .statement-stage {
@@ -304,10 +360,6 @@
     position: relative;
   }
 
-  .chrome-sheen::after {
-    content: none;
-  }
-
   .vert-label {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
@@ -345,7 +397,6 @@
     transform: rotateX(8deg) rotateZ(-1deg);
   }
 
-  /* Skip offscreen paint work for long page sections */
   .perf-section {
     content-visibility: auto;
     contain-intrinsic-size: auto 640px;
@@ -363,21 +414,138 @@
   }
 }
 
+/* Specular band slides across glyphs only (background-clip: text) */
+@keyframes chrome-metal-sheen {
+  0%,
+  16% {
+    background-position:
+      135% 0,
+      0 0;
+  }
+  46%,
+  100% {
+    background-position:
+      -45% 0,
+      0 0;
+  }
+}
 
+/* Mobile: readable plate + lighter metal, no lean, no edge clip */
 @media (max-width: 639px) {
+  .chrome-lean {
+    perspective: none;
+  }
+
   .chrome-lean-body {
     transform: none;
   }
-  .chrome-mark {
-    filter: drop-shadow(0 0 8px rgb(225 6 0 / 0.25));
+
+  .chrome-line {
+    line-height: 0.96;
+    letter-spacing: -0.012em;
   }
+
+  .chrome-plate {
+    color: #fafaf8;
+    text-shadow:
+      0 0 16px rgb(225 6 0 / 0.55),
+      0 2px 0 #000,
+      0 -2px 0 #000,
+      2px 0 0 #000,
+      -2px 0 0 #000,
+      1.5px 1.5px 0 #000,
+      -1.5px 1.5px 0 #000;
+  }
+
+  .chrome-mark {
+    line-height: 0.96;
+    letter-spacing: -0.012em;
+    /* no near-black valleys — plate stays legible under sheen */
+    background-image:
+      linear-gradient(
+        110deg,
+        transparent 0%,
+        transparent 32%,
+        rgb(255 255 255 / 0.3) 40%,
+        rgb(255 255 255 / 1) 47%,
+        rgb(255 220 220 / 0.65) 52%,
+        transparent 62%,
+        transparent 100%
+      ),
+      linear-gradient(
+        172deg,
+        #ffffff 0%,
+        #ffffff 14%,
+        #f0f0f0 22%,
+        #ffcfcf 34%,
+        #ff5555 46%,
+        #e10600 54%,
+        #ff6a6a 64%,
+        #ffd0d0 76%,
+        #ffffff 90%,
+        #f8f8f8 100%
+      );
+    background-size:
+      240% 100%,
+      100% 100%;
+    /* freeze sheen mid-glyph so mobile always has a bright metal band */
+    animation: none;
+    background-position:
+      38% 0,
+      0 0;
+    filter:
+      drop-shadow(0 2px 0 #000)
+      drop-shadow(0 -2px 0 #000)
+      drop-shadow(2px 0 0 #000)
+      drop-shadow(-2px 0 0 #000)
+      drop-shadow(0 0 14px rgb(225 6 0 / 0.55));
+  }
+
+  .chrome-mark-sm {
+    letter-spacing: 0.01em;
+    animation: none;
+    background-position:
+      40% 0,
+      0 0;
+    background-image:
+      linear-gradient(
+        110deg,
+        transparent 0%,
+        transparent 36%,
+        rgb(255 255 255 / 0.85) 48%,
+        transparent 60%,
+        transparent 100%
+      ),
+      linear-gradient(
+        172deg,
+        #ffffff 0%,
+        #ffd8d8 20%,
+        #ff4040 45%,
+        #e10600 55%,
+        #ff8a8a 75%,
+        #ffffff 100%
+      );
+    filter:
+      drop-shadow(0 1.5px 0 #000)
+      drop-shadow(1.5px 0 0 #000)
+      drop-shadow(-1.5px 0 0 #000)
+      drop-shadow(0 0 10px rgb(225 6 0 / 0.5));
+  }
+
   .statement-stage {
-    padding-inline: 0;
+    padding-inline: 0.5rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .enter-rise {
     animation: none;
+  }
+  .chrome-mark,
+  .chrome-mark-sm {
+    animation: none;
+    background-position:
+      42% 0,
+      0 0;
   }
 }

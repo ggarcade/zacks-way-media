@@ -6,15 +6,35 @@ type StatementMarkProps = {
   compact?: boolean;
 };
 
+/** Dual-layer line: solid plate underneath for legibility + clipped metal sheen on top */
+function ChromeLine({
+  children,
+  className,
+}: {
+  children: string;
+  className?: string;
+}) {
+  return (
+    <p className={cn("chrome-line relative", className)}>
+      <span className="chrome-plate" aria-hidden>
+        {children}
+      </span>
+      <span className="chrome-mark">{children}</span>
+    </p>
+  );
+}
+
 /**
- * Motorsports chrome lockup — static (no scroll-linked re-renders).
- * Performance: GPU-light; no per-frame React state.
+ * Motorsports chrome lockup.
+ * Metal sheen is painted INTO the glyphs (background-clip:text).
+ * A solid plate layer underneath keeps mobile readable even when
+ * the metal gradient is mid-sheen.
  */
 export function StatementMark({ className, compact = false }: StatementMarkProps) {
   if (compact) {
     return (
       <div className={cn("chrome-sheen select-none", className)} aria-hidden>
-        <p className="chrome-mark-sm text-[clamp(1.2rem,5.5vw,1.85rem)]">
+        <p className="chrome-mark-sm text-[clamp(1.35rem,6vw,1.85rem)]">
           Signal over noise
         </p>
       </div>
@@ -24,11 +44,11 @@ export function StatementMark({ className, compact = false }: StatementMarkProps
   return (
     <div
       className={cn(
-        "chrome-sheen chrome-lean relative w-full max-w-full select-none overflow-x-clip text-center sm:pl-4 sm:text-left",
+        "chrome-sheen chrome-lean relative w-full max-w-full select-none px-2 text-center sm:overflow-x-clip sm:pl-4 sm:text-left",
         className,
       )}
     >
-      <p className="mb-2.5 font-mono text-[0.65rem] font-medium uppercase tracking-[0.22em] text-primary sm:tracking-[0.28em] sm:text-xs">
+      <p className="mb-3 font-mono text-[0.7rem] font-medium uppercase tracking-[0.18em] text-primary sm:mb-2.5 sm:text-[0.65rem] sm:tracking-[0.28em] sm:text-xs">
         Zack's Way Media · Signature
       </p>
       <h1 className="sr-only">
@@ -36,15 +56,15 @@ export function StatementMark({ className, compact = false }: StatementMarkProps
       </h1>
       <div
         aria-hidden
-        className="chrome-lean-body mx-auto w-full max-w-full space-y-0.5 overflow-x-clip sm:mx-0 sm:translate-x-2 sm:space-y-0"
+        className="chrome-lean-body mx-auto w-full max-w-full space-y-1.5 sm:mx-0 sm:translate-x-2 sm:space-y-0"
       >
-        <p className="chrome-mark text-[clamp(1.55rem,9.5vw,4.7rem)]">
+        <ChromeLine className="text-[clamp(1.9rem,9.6vw,4.7rem)]">
           Signal over
-        </p>
-        <p className="chrome-mark text-[clamp(1.55rem,9.5vw,4.7rem)]">Noise</p>
-        <div className="mt-2.5 flex flex-col items-center gap-1 sm:mt-3 sm:flex-row sm:items-baseline sm:gap-3">
+        </ChromeLine>
+        <ChromeLine className="text-[clamp(1.9rem,9.6vw,4.7rem)]">Noise</ChromeLine>
+        <div className="mt-3 flex flex-col items-center gap-1.5 sm:mt-3 sm:flex-row sm:items-baseline sm:gap-3">
           <span className="hidden h-px w-8 bg-primary/70 sm:block" />
-          <p className="chrome-mark-sm px-1 text-[clamp(0.8rem,3.6vw,1.4rem)] tracking-tight">
+          <p className="chrome-mark-sm max-w-[18rem] px-1 text-[clamp(1rem,4.4vw,1.4rem)] tracking-tight sm:max-w-none">
             Built for brands that move
           </p>
         </div>
