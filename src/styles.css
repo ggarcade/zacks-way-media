@@ -444,44 +444,45 @@ html[data-accent="blue"] {
     pointer-events: none;
     position: absolute;
     z-index: 0;
-    left: 5%;
-    right: 5%;
-    top: 18%;
-    bottom: 8%;
-    border-radius: 40%;
+    left: 0%;
+    right: 0%;
+    top: 8%;
+    bottom: 0%;
+    border-radius: 42%;
     background:
       radial-gradient(
-        ellipse 70% 55% at 50% 45%,
-        rgb(var(--accent-rgb) / 0.45),
-        rgb(var(--accent-rgb) / 0.12) 45%,
-        transparent 70%
+        ellipse 75% 60% at 50% 48%,
+        rgb(var(--accent-rgb) / 0.72),
+        rgb(var(--accent-rgb) / 0.28) 40%,
+        rgb(var(--accent-rgb) / 0.08) 62%,
+        transparent 78%
       );
-    filter: blur(28px);
+    filter: blur(34px);
     opacity: 0;
     mix-blend-mode: screen;
     animation:
-      neon-bloom-ignite 3.2s steps(1, end) both,
-      neon-bloom-hum 7.5s ease-in-out 3.2s infinite;
+      neon-bloom-ignite 3.8s steps(1, end) both,
+      neon-bloom-hum 6.5s ease-in-out 3.8s infinite;
   }
 
   .neon-line {
     animation:
-      neon-tube-ignite 3.2s both,
-      neon-tube-hum 7s ease-in-out 3.2s infinite;
+      neon-tube-ignite 3.8s both,
+      neon-tube-hum 6.5s ease-in-out 3.8s infinite;
     will-change: opacity;
   }
 
   .neon-delay-0 {
-    animation-delay: 0s, 3.2s;
+    animation-delay: 0s, 3.8s;
   }
   .neon-delay-1 {
-    animation-delay: 0.15s, 3.35s;
+    animation-delay: 0.18s, 3.98s;
   }
   .neon-delay-2 {
-    animation-delay: 0.48s, 3.68s;
+    animation-delay: 0.55s, 4.35s;
   }
   .neon-delay-3 {
-    animation-delay: 0.85s, 4.05s;
+    animation-delay: 1s, 4.8s;
   }
 
 
@@ -556,52 +557,65 @@ html[data-accent="blue"] {
 
 /* 80s neon tube: gas sputters, catches, almost dies, then holds — + idle hum */
 @keyframes neon-tube-ignite {
+  /* blackout → hard snap-on → dead → snap → stutter → settle */
   0% {
     opacity: 0;
   }
-  2% {
-    opacity: 0.55;
+  1.5% {
+    opacity: 0.85;
   }
-  4% {
+  3% {
     opacity: 0;
   }
+  5% {
+    opacity: 1;
+  }
   7% {
-    opacity: 0.92;
+    opacity: 0;
   }
-  9% {
-    opacity: 0.04;
+  10% {
+    opacity: 0.95;
   }
-  13% {
+  12% {
+    opacity: 0.05;
+  }
+  16% {
     opacity: 1;
   }
-  15% {
-    opacity: 0.06;
+  18% {
+    opacity: 0;
   }
-  20% {
+  22% {
     opacity: 1;
   }
-  23% {
+  25% {
     opacity: 0.12;
   }
-  29% {
+  30% {
     opacity: 1;
   }
-  33% {
-    opacity: 0.28;
+  34% {
+    opacity: 0.2;
   }
   40% {
     opacity: 1;
   }
-  46% {
-    opacity: 0.5;
+  45% {
+    opacity: 0.35;
   }
-  55% {
+  52% {
     opacity: 1;
   }
-  62% {
-    opacity: 0.78;
+  58% {
+    opacity: 0.55;
   }
-  72%,
+  66% {
+    opacity: 1;
+  }
+  72% {
+    opacity: 0.72;
+  }
+  80%,
   100% {
     opacity: 1;
   }
@@ -609,20 +623,26 @@ html[data-accent="blue"] {
 
 @keyframes neon-tube-hum {
   0%,
-  86%,
+  78%,
   100% {
     opacity: 1;
   }
-  88% {
-    opacity: 0.78;
+  80% {
+    opacity: 0.55;
   }
-  89.5% {
+  81.5% {
     opacity: 1;
   }
-  91% {
-    opacity: 0.86;
+  83% {
+    opacity: 0.4;
   }
-  93%,
+  84.5% {
+    opacity: 1;
+  }
+  86% {
+    opacity: 0.7;
+  }
+  88%,
   100% {
     opacity: 1;
   }
@@ -632,66 +652,84 @@ html[data-accent="blue"] {
   0% {
     opacity: 0;
   }
-  2% {
-    opacity: 0.8;
+  1.5% {
+    opacity: 0.95;
   }
-  4% {
+  3% {
     opacity: 0;
   }
+  5% {
+    opacity: 1;
+  }
   7% {
-    opacity: 0.9;
+    opacity: 0;
   }
-  9% {
-    opacity: 0.03;
+  10% {
+    opacity: 0.95;
   }
-  13% {
-    opacity: 0.85;
-  }
-  15% {
+  12% {
     opacity: 0.05;
   }
-  20% {
-    opacity: 0.82;
+  16% {
+    opacity: 1;
   }
-  23% {
-    opacity: 0.08;
+  18% {
+    opacity: 0.04;
   }
-  29% {
-    opacity: 0.75;
+  22% {
+    opacity: 0.95;
   }
-  33% {
+  25% {
+    opacity: 0.1;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  34% {
     opacity: 0.15;
   }
   42% {
-    opacity: 0.62;
+    opacity: 0.78;
   }
-  55% {
-    opacity: 0.42;
+  50% {
+    opacity: 0.35;
   }
-  72%,
-  100% {
+  60% {
+    opacity: 0.72;
+  }
+  72% {
     opacity: 0.5;
+  }
+  85%,
+  100% {
+    opacity: 0.62;
   }
 }
 
 @keyframes neon-bloom-hum {
   0%,
-  86%,
+  78%,
   100% {
-    opacity: 0.5;
+    opacity: 0.62;
   }
-  88% {
-    opacity: 0.22;
+  80% {
+    opacity: 0.18;
   }
-  90% {
-    opacity: 0.58;
+  81.5% {
+    opacity: 0.75;
   }
-  92% {
-    opacity: 0.32;
+  83% {
+    opacity: 0.12;
   }
-  94%,
+  84.5% {
+    opacity: 0.7;
+  }
+  86% {
+    opacity: 0.35;
+  }
+  88%,
   100% {
-    opacity: 0.5;
+    opacity: 0.62;
   }
 }
 
