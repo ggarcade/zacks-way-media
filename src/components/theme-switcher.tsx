@@ -15,7 +15,7 @@ type ThemeSwitcherProps = {
 };
 
 /**
- * Client palette switcher — red / green / blue on black.
+ * Client palette switcher — red / green / blue / orange on black.
  * Persists in localStorage so demos keep the last rim for the client.
  */
 export function ThemeSwitcher({ className, compact = false }: ThemeSwitcherProps) {

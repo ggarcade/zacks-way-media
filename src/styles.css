@@ -64,7 +64,7 @@
 
 /*
  * Accent palettes (black base stays fixed).
- * Switch via <html data-accent="red|green|blue"> — theme switcher + FOUC script.
+ * Switch via <html data-accent="red|green|blue|orange"> — theme switcher + FOUC script.
  */
 :root,
 html[data-accent="red"] {
@@ -135,6 +135,30 @@ html[data-accent="blue"] {
   --shadow-lift: 0 0 0 1px rgb(59 130 246 / 0.28), 0 24px 60px rgb(0 0 0 / 0.55);
   --shadow-red: 0 0 48px rgb(59 130 246 / 0.16);
 }
+
+html[data-accent="orange"] {
+  --accent-rgb: 255 106 0;
+  --color-primary: #ff6a00;
+  --color-primary-fg: #140800;
+  --color-primary-soft: #1a0c00;
+  --color-accent: #ff6a00;
+  --color-accent-soft: #140900;
+  --color-ring: #ff6a00;
+  --color-danger: #ff6a00;
+  --color-rim: #ff6a00;
+  --chrome-tint-hi: #ffe4cc;
+  --chrome-tint-mid: #ff9a4d;
+  --chrome-mid: #ff6a00;
+  --chrome-deep: #a34400;
+  --chrome-dark: #3a1600;
+  --chrome-bright: #ff8c33;
+  --chrome-pale: #fff0e0;
+  --chrome-sheen-warm: 255 230 200;
+  --shadow-soft: 0 0 0 1px rgb(255 106 0 / 0.06);
+  --shadow-lift: 0 0 0 1px rgb(255 106 0 / 0.28), 0 24px 60px rgb(0 0 0 / 0.55);
+  --shadow-red: 0 0 48px rgb(255 106 0 / 0.16);
+}
+
 
 @layer base {
   *,

@@ -4,7 +4,7 @@ import appCss from "../styles.css?url";
 
 /** Runs before paint so the last client palette doesn't flash red first */
 const ACCENT_BOOT =
-  "(function(){try{var k='zwm-accent',raw=localStorage.getItem(k),a='red';if(raw){var p=JSON.parse(raw);if(p&&p.state&&p.state.accent&&['red','green','blue'].indexOf(p.state.accent)!==-1)a=p.state.accent;}document.documentElement.setAttribute('data-accent',a);}catch(e){document.documentElement.setAttribute('data-accent','red');}})();";
+  "(function(){try{var k='zwm-accent',raw=localStorage.getItem(k),a='red';if(raw){var p=JSON.parse(raw);if(p&&p.state&&p.state.accent&&['red','green','blue','orange'].indexOf(p.state.accent)!==-1)a=p.state.accent;}document.documentElement.setAttribute('data-accent',a);}catch(e){document.documentElement.setAttribute('data-accent','red');}})();";
 
 export const Route = createRootRoute({
   head: () => ({

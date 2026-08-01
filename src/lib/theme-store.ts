@@ -20,6 +20,12 @@ export const ACCENT_THEMES = [
     blurb: "Corporate-cool edge",
     swatch: "#3b82f6",
   },
+  {
+    id: "orange" as const,
+    label: "Ember",
+    blurb: "Heat / motorsport energy",
+    swatch: "#ff6a00",
+  },
 ];
 
 export type AccentId = (typeof ACCENT_THEMES)[number]["id"];
