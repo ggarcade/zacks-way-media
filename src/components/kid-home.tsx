@@ -309,7 +309,7 @@ export function KidHome() {
 
       {/* Identity + hero reel */}
       <section className="relative overflow-hidden border-b border-border">
-        <div className="pointer-events-none absolute inset-0 opacity-40 [background:radial-gradient(circle_at_80%_20%,rgb(225_6_0/0.12),transparent_42%)]" />
+        <div className="pointer-events-none absolute inset-0 opacity-40 [background:radial-gradient(circle_at_80%_20%,rgb(var(--accent-rgb)/0.14),transparent_42%)]" />
 
         <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center lg:gap-12">
           <div className="enter-rise space-y-7">

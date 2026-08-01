@@ -103,7 +103,7 @@ function StartProjectPage() {
 
       {/* Hero band */}
       <section className="relative overflow-hidden border-b border-border">
-        <div className="pointer-events-none absolute inset-0 opacity-40 [background:radial-gradient(circle_at_15%_0%,rgb(225_6_0/0.2),transparent_45%)]" />
+        <div className="pointer-events-none absolute inset-0 opacity-40 [background:radial-gradient(circle_at_15%_0%,rgb(var(--accent-rgb)/0.2),transparent_45%)]" />
         <div className="relative mx-auto grid w-full max-w-6xl gap-10 px-4 py-12 sm:px-6 sm:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
           <div className="enter-rise space-y-6">
             <p className="section-label">Calling card · Client intake</p>
