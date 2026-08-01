@@ -306,3 +306,21 @@ Zack’s Way Media is a dark, red-rimmed, edgy-corporate studio site for @zacks_
 ---
 
 *End of letter. Update this file when major product decisions change.*
+
+
+## 14. Theme switcher (added Aug 1, 2026)
+
+Client-facing **palette switcher** in the header (home + start-project):
+
+| Id | Label | Accent |
+|----|-------|--------|
+| `red` | Crimson | `#e10600` (default studio) |
+| `green` | Signal | `#12b76a` |
+| `blue` | Electric | `#3b82f6` |
+
+- Black base stays fixed; only rim / chrome / primary recolor.
+- Stored in `localStorage` key `zwm-accent` (zustand persist).
+- FOUC boot script in `__root.tsx` applies `data-accent` before paint.
+- CSS tokens: `html[data-accent="…"]` overrides `--color-primary`, `--accent-rgb`, `--chrome-*`.
+- Components: `src/components/theme-switcher.tsx`, `src/lib/theme-store.ts`.
+

@@ -9,7 +9,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-fg hover:brightness-110 shadow-[0_0_24px_rgb(225_6_0/0.22)]",
+          "bg-primary text-primary-fg hover:brightness-110 shadow-[0_0_24px_rgb(var(--accent-rgb)/0.22)]",
         secondary:
           "bg-surface-2 text-fg border border-border hover:border-border-strong hover:bg-surface-3",
         outline:

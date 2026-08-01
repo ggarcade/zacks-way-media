@@ -52,14 +52,88 @@
   --radius-2xl: 12px;
   --radius-pill: 9999px;
 
-  --shadow-soft: 0 0 0 1px rgb(225 6 0 / 0.06);
-  --shadow-lift: 0 0 0 1px rgb(225 6 0 / 0.28), 0 24px 60px rgb(0 0 0 / 0.55);
-  --shadow-red: 0 0 48px rgb(225 6 0 / 0.16);
+  --shadow-soft: 0 0 0 1px rgb(var(--accent-rgb) / 0.06);
+  --shadow-lift: 0 0 0 1px rgb(var(--accent-rgb) / 0.28), 0 24px 60px rgb(0 0 0 / 0.55);
+  --shadow-red: 0 0 48px rgb(var(--accent-rgb) / 0.16);
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --motion-quick: 150ms;
   --motion-fast: 250ms;
   --motion-slow: 400ms;
+}
+
+/*
+ * Accent palettes (black base stays fixed).
+ * Switch via <html data-accent="red|green|blue"> — theme switcher + FOUC script.
+ */
+:root,
+html[data-accent="red"] {
+  --accent-rgb: 225 6 0;
+  --color-primary: #e10600;
+  --color-primary-fg: #ffffff;
+  --color-primary-soft: #1f0808;
+  --color-accent: #e10600;
+  --color-accent-soft: #160707;
+  --color-ring: #e10600;
+  --color-danger: #e10600;
+  --color-rim: #e10600;
+  --chrome-tint-hi: #ffe0e0;
+  --chrome-tint-mid: #ff7a7a;
+  --chrome-mid: #e10600;
+  --chrome-deep: #7a0600;
+  --chrome-dark: #2a0200;
+  --chrome-bright: #ff4d4d;
+  --chrome-pale: #ffe8e8;
+  --chrome-sheen-warm: 255 235 235;
+  --shadow-soft: 0 0 0 1px rgb(225 6 0 / 0.06);
+  --shadow-lift: 0 0 0 1px rgb(225 6 0 / 0.28), 0 24px 60px rgb(0 0 0 / 0.55);
+  --shadow-red: 0 0 48px rgb(225 6 0 / 0.16);
+}
+
+html[data-accent="green"] {
+  --accent-rgb: 18 183 106;
+  --color-primary: #12b76a;
+  --color-primary-fg: #04140c;
+  --color-primary-soft: #071a10;
+  --color-accent: #12b76a;
+  --color-accent-soft: #05140c;
+  --color-ring: #12b76a;
+  --color-danger: #12b76a;
+  --color-rim: #12b76a;
+  --chrome-tint-hi: #d8ffe8;
+  --chrome-tint-mid: #5ee9a0;
+  --chrome-mid: #12b76a;
+  --chrome-deep: #065f3a;
+  --chrome-dark: #022416;
+  --chrome-bright: #34d399;
+  --chrome-pale: #e8fff2;
+  --chrome-sheen-warm: 220 255 235;
+  --shadow-soft: 0 0 0 1px rgb(18 183 106 / 0.06);
+  --shadow-lift: 0 0 0 1px rgb(18 183 106 / 0.28), 0 24px 60px rgb(0 0 0 / 0.55);
+  --shadow-red: 0 0 48px rgb(18 183 106 / 0.16);
+}
+
+html[data-accent="blue"] {
+  --accent-rgb: 59 130 246;
+  --color-primary: #3b82f6;
+  --color-primary-fg: #ffffff;
+  --color-primary-soft: #0a1628;
+  --color-accent: #3b82f6;
+  --color-accent-soft: #08111f;
+  --color-ring: #3b82f6;
+  --color-danger: #3b82f6;
+  --color-rim: #3b82f6;
+  --chrome-tint-hi: #dce8ff;
+  --chrome-tint-mid: #7eb0ff;
+  --chrome-mid: #3b82f6;
+  --chrome-deep: #1d4ed8;
+  --chrome-dark: #0b1f4a;
+  --chrome-bright: #60a5fa;
+  --chrome-pale: #e8f0ff;
+  --chrome-sheen-warm: 220 235 255;
+  --shadow-soft: 0 0 0 1px rgb(59 130 246 / 0.06);
+  --shadow-lift: 0 0 0 1px rgb(59 130 246 / 0.28), 0 24px 60px rgb(0 0 0 / 0.55);
+  --shadow-red: 0 0 48px rgb(59 130 246 / 0.16);
 }
 
 @layer base {
@@ -86,6 +160,9 @@
     line-height: var(--leading-normal);
     text-rendering: optimizeLegibility;
     overflow-x: clip;
+    transition:
+      background-color var(--motion-fast) var(--ease-out),
+      color var(--motion-fast) var(--ease-out);
   }
 
   h1,
@@ -105,7 +182,7 @@
   }
 
   ::selection {
-    background: rgb(225 6 0 / 0.35);
+    background: rgb(var(--accent-rgb) / 0.35);
     color: var(--color-fg);
   }
 }
@@ -146,17 +223,17 @@
   }
 
   .red-rim {
-    border: 1px solid rgb(225 6 0 / 0.45);
+    border: 1px solid rgb(var(--accent-rgb) / 0.45);
     box-shadow:
-      inset 0 0 0 1px rgb(225 6 0 / 0.08),
-      0 0 24px rgb(225 6 0 / 0.08);
+      inset 0 0 0 1px rgb(var(--accent-rgb) / 0.08),
+      0 0 24px rgb(var(--accent-rgb) / 0.08);
   }
 
   .red-rim-strong {
-    border: 1px solid rgb(225 6 0 / 0.7);
+    border: 1px solid rgb(var(--accent-rgb) / 0.7);
     box-shadow:
-      inset 0 0 0 1px rgb(225 6 0 / 0.12),
-      0 0 32px rgb(225 6 0 / 0.18);
+      inset 0 0 0 1px rgb(var(--accent-rgb) / 0.12),
+      0 0 32px rgb(var(--accent-rgb) / 0.18);
   }
 
   .hatch {
@@ -165,8 +242,8 @@
       -45deg,
       transparent,
       transparent 3px,
-      rgb(225 6 0 / 0.04) 3px,
-      rgb(225 6 0 / 0.04) 4px
+      rgb(var(--accent-rgb) / 0.04) 3px,
+      rgb(var(--accent-rgb) / 0.04) 4px
     );
   }
 
@@ -185,9 +262,7 @@
 
   /*
    * Motorsports chrome — metal sheen CLIPPED TO THE GLYPHS only.
-   * Dual-layer: .chrome-plate (solid readable base) + .chrome-mark (metal + sheen).
-   * Sheen is a sliding specular band inside background-clip:text — purposeful,
-   * not a full-bleed overlay.
+   * Colors follow --chrome-* so green/blue palettes recolor the lockup.
    */
   .chrome-line {
     position: relative;
@@ -204,7 +279,7 @@
     display: block;
     color: #f3f3f1;
     text-shadow:
-      0 0 18px rgb(225 6 0 / 0.4),
+      0 0 18px rgb(var(--accent-rgb) / 0.4),
       0 1px 0 #000,
       0 -1px 0 #000,
       1px 0 0 #000,
@@ -234,7 +309,7 @@
         transparent 36%,
         rgb(255 255 255 / 0.05) 40%,
         rgb(255 255 255 / 0.92) 47%,
-        rgb(255 235 235 / 0.7) 50%,
+        rgb(var(--chrome-sheen-warm) / 0.7) 50%,
         rgb(255 255 255 / 0.18) 54%,
         transparent 62%,
         transparent 100%
@@ -244,14 +319,14 @@
         #ffffff 0%,
         #f4f4f4 5%,
         #c8c8c8 11%,
-        #ffe0e0 18%,
-        #ff7a7a 28%,
-        #e10600 40%,
-        #7a0600 50%,
-        #2a0200 56%,
-        #b01000 64%,
-        #ff4d4d 74%,
-        #ffe8e8 86%,
+        var(--chrome-tint-hi) 18%,
+        var(--chrome-tint-mid) 28%,
+        var(--chrome-mid) 40%,
+        var(--chrome-deep) 50%,
+        var(--chrome-dark) 56%,
+        var(--chrome-mid) 64%,
+        var(--chrome-bright) 74%,
+        var(--chrome-pale) 86%,
         #ffffff 94%,
         #d4d4d4 100%
       );
@@ -271,7 +346,7 @@
       drop-shadow(0 -1px 0 #000)
       drop-shadow(1px 0 0 #000)
       drop-shadow(-1px 0 0 #000)
-      drop-shadow(0 0 16px rgb(225 6 0 / 0.45));
+      drop-shadow(0 0 16px rgb(var(--accent-rgb) / 0.45));
     animation: chrome-metal-sheen 5.5s var(--ease-out) infinite;
   }
 
@@ -295,10 +370,10 @@
       linear-gradient(
         172deg,
         #ffffff 0%,
-        #ffd0d0 16%,
-        #e10600 40%,
-        #4a0300 54%,
-        #ff6b6b 76%,
+        var(--chrome-tint-hi) 16%,
+        var(--chrome-mid) 40%,
+        var(--chrome-dark) 54%,
+        var(--chrome-tint-mid) 76%,
         #ffffff 100%
       );
     background-size:
@@ -315,7 +390,7 @@
       drop-shadow(0 1px 0 #000)
       drop-shadow(1px 0 0 #000)
       drop-shadow(-1px 0 0 #000)
-      drop-shadow(0 0 10px rgb(225 6 0 / 0.35));
+      drop-shadow(0 0 10px rgb(var(--accent-rgb) / 0.35));
     animation: chrome-metal-sheen 6.5s var(--ease-out) infinite;
   }
 
@@ -324,8 +399,8 @@
     isolation: isolate;
     overflow: hidden;
     background:
-      radial-gradient(ellipse 90% 70% at 50% 40%, rgb(225 6 0 / 0.11), transparent 62%),
-      radial-gradient(ellipse 50% 40% at 80% 80%, rgb(225 6 0 / 0.05), transparent 55%),
+      radial-gradient(ellipse 90% 70% at 50% 40%, rgb(var(--accent-rgb) / 0.11), transparent 62%),
+      radial-gradient(ellipse 50% 40% at 80% 80%, rgb(var(--accent-rgb) / 0.05), transparent 55%),
       linear-gradient(180deg, #0a0a0a 0%, #050505 100%);
   }
 
@@ -351,7 +426,7 @@
     pointer-events: none;
     background: radial-gradient(
       circle at 70% 30%,
-      rgb(225 6 0 / 0.06),
+      rgb(var(--accent-rgb) / 0.06),
       transparent 55%
     );
   }
@@ -414,7 +489,6 @@
   }
 }
 
-/* Specular band slides across glyphs only (background-clip: text) */
 @keyframes chrome-metal-sheen {
   0%,
   16% {
@@ -430,7 +504,6 @@
   }
 }
 
-/* Mobile: readable plate + lighter metal, no lean, no edge clip */
 @media (max-width: 639px) {
   .chrome-lean {
     perspective: none;
@@ -448,7 +521,7 @@
   .chrome-plate {
     color: #fafaf8;
     text-shadow:
-      0 0 16px rgb(225 6 0 / 0.55),
+      0 0 16px rgb(var(--accent-rgb) / 0.55),
       0 2px 0 #000,
       0 -2px 0 #000,
       2px 0 0 #000,
@@ -460,7 +533,6 @@
   .chrome-mark {
     line-height: 0.96;
     letter-spacing: -0.012em;
-    /* no near-black valleys — plate stays legible under sheen */
     background-image:
       linear-gradient(
         110deg,
@@ -468,7 +540,7 @@
         transparent 32%,
         rgb(255 255 255 / 0.3) 40%,
         rgb(255 255 255 / 1) 47%,
-        rgb(255 220 220 / 0.65) 52%,
+        rgb(var(--chrome-sheen-warm) / 0.65) 52%,
         transparent 62%,
         transparent 100%
       ),
@@ -477,18 +549,17 @@
         #ffffff 0%,
         #ffffff 14%,
         #f0f0f0 22%,
-        #ffcfcf 34%,
-        #ff5555 46%,
-        #e10600 54%,
-        #ff6a6a 64%,
-        #ffd0d0 76%,
+        var(--chrome-tint-hi) 34%,
+        var(--chrome-bright) 46%,
+        var(--chrome-mid) 54%,
+        var(--chrome-tint-mid) 64%,
+        var(--chrome-pale) 76%,
         #ffffff 90%,
         #f8f8f8 100%
       );
     background-size:
       240% 100%,
       100% 100%;
-    /* freeze sheen mid-glyph so mobile always has a bright metal band */
     animation: none;
     background-position:
       38% 0,
@@ -498,7 +569,7 @@
       drop-shadow(0 -2px 0 #000)
       drop-shadow(2px 0 0 #000)
       drop-shadow(-2px 0 0 #000)
-      drop-shadow(0 0 14px rgb(225 6 0 / 0.55));
+      drop-shadow(0 0 14px rgb(var(--accent-rgb) / 0.55));
   }
 
   .chrome-mark-sm {
@@ -519,17 +590,17 @@
       linear-gradient(
         172deg,
         #ffffff 0%,
-        #ffd8d8 20%,
-        #ff4040 45%,
-        #e10600 55%,
-        #ff8a8a 75%,
+        var(--chrome-tint-hi) 20%,
+        var(--chrome-bright) 45%,
+        var(--chrome-mid) 55%,
+        var(--chrome-tint-mid) 75%,
         #ffffff 100%
       );
     filter:
       drop-shadow(0 1.5px 0 #000)
       drop-shadow(1.5px 0 0 #000)
       drop-shadow(-1.5px 0 0 #000)
-      drop-shadow(0 0 10px rgb(225 6 0 / 0.5));
+      drop-shadow(0 0 10px rgb(var(--accent-rgb) / 0.5));
   }
 
   .statement-stage {

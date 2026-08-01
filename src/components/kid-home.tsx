@@ -21,6 +21,7 @@ import { SetupDialog } from "@/components/setup-dialog";
 import { ReelsCarousel } from "@/components/reels-carousel";
 import { HeroReel } from "@/components/hero-reel";
 import { StatementMark, StatementStage } from "@/components/statement-mark";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 import { instagramUrl, useProfileStore } from "@/lib/profile-store";
 import { cn } from "@/lib/utils";
 
@@ -249,6 +250,7 @@ export function KidHome() {
             </Link>
           </nav>
           <div className="flex items-center gap-2">
+            <ThemeSwitcher compact />
             <Button
               variant="ghost"
               size="icon"

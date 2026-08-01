@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProjectIntakeForm } from "@/components/project-intake-form";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export const Route = createFileRoute("/start-project")({
   component: StartProjectPage,
@@ -75,6 +76,7 @@ function StartProjectPage() {
             </div>
           </Link>
           <div className="flex items-center gap-2">
+            <ThemeSwitcher compact />
             <Button variant="ghost" size="sm" asChild className="hidden sm:inline-flex">
               <Link to="/">
                 <ArrowLeft className="size-3.5" />
